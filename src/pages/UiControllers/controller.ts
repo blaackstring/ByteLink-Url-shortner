@@ -37,3 +37,5 @@ const urlkey=url
         console.error('Error while Getting Url',error)
     }
 }
+
+export default {}
