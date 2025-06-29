@@ -51,7 +51,7 @@ const key=useParams()
     <hr />
     <BlurText
       delay={400}
-      text="The URL SHORTNER"
+      text="The URL SHORTENER"
       animateBy="words"
       direction="top"
       className="text-xl sm:text-xl mb-8 ml-3 lg:text-3xl"
@@ -66,10 +66,12 @@ const key=useParams()
      <div className="w-full flex justify-between items-center flex-row">
 
   <div style={{ height: '100px', position: 'relative' }}>
+   
   <GlassIcons items={items} className="custom-class"/>
+  <span>Made By Shahan</span>
 </div>
 <CircularText
-  text="REACT*BITS*COMPONENTS*"
+  text="URL*SHORTENER*BLAACKSTRING*"
   onHover="speedUp"
   spinDuration={20}
 
@@ -79,7 +81,9 @@ const key=useParams()
 
 
    </div>
+   
 </div>
+
   </IsClient>
     </div>
   

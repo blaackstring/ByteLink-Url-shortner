@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CopyWithIcon from './CopyWithIcon';
+import BlurText from './BlurText';
 
 const Input = () => {
   
@@ -47,11 +48,20 @@ useEffect(() => {
 
   
   return (
-    <div>
+    <div className='relative'>
+     {!isPortal&& <div className='absolute -top-[130px] w-full sm:w-4/3  '>
+       <div className='w-full'>
+        <BlurText className='text-2xl lg:text-5xl font-extrabold w-full' text='Make Every '/>
+        <h1 className='text-2xl lg:text-5xl font-extrabold w-full' >
+           Character Count.
+        </h1>
+       </div>
+      </div>}
      {!isPortal&&<StyledWrapper>
+  
       <div className="input__container">
         <div className="shadow__input" />
-          <input type="text" name="URLSHORTNER" className="input__search" placeholder="Enter URL" onChange={(e)=>setInput(e.target.value)} />
+          <input type="text" name="URLSHORTENER" className="input__search" placeholder="Enter URL" onChange={(e)=>setInput(e.target.value)} />
         <button className="input__button__shadow" onClick={sendurlHandler}>
           <img src="/link.png" alt="" className="w-8 text-blue-900 h-5" />
         </button>
@@ -76,6 +86,7 @@ useEffect(() => {
        </div>
       </div>
     </div>
+
     </>}
     </div>
   );
@@ -179,7 +190,7 @@ const StyledWrapper = styled.div`
   }
 
   .input__container::before {
-    content: "URL SHORTNER";
+    content: "URL SHORTENER";
     position: absolute;
     top: -15px;
     left: 20px;
