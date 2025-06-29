@@ -1,10 +1,11 @@
-import { Sendurl } from '@/pages/UiControllers/controller';
+
 import { X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CopyWithIcon from './CopyWithIcon';
 import BlurText from './BlurText';
 import Image from 'next/image';
+import { Sendurl } from '@/UiControllers/controller';
 
 const Input = () => {
   const [input, setInput] = useState('');
