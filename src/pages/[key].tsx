@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Geturl } from './UiControllers/controller';
-import { log } from 'console';
 import Loader1 from '@/components/Loader1';
 
 export default function Page() {
@@ -11,7 +10,7 @@ export default function Page() {
 useEffect(() => {
   if (key) {
     (async () => {
-      const res = await Geturl(key);
+      const res = await Geturl(String(key));
       if (res.success) window.location.href = res.location;
     })();
   }

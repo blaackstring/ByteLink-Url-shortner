@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import {
   motion,
   useAnimation,
-  useMotionValue,
-  MotionValue,
+
 } from "framer-motion";
 
 interface CircularTextProps {
@@ -23,7 +22,6 @@ const CircularText: React.FC<CircularTextProps> = ({
 }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
-  const rotation: MotionValue<number> = useMotionValue(0);
 
   useEffect(() => {
     // Start continuous rotation

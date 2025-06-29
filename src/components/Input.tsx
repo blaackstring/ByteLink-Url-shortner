@@ -1,93 +1,106 @@
 import { Sendurl } from '@/pages/UiControllers/controller';
-import { log } from 'console';
-import { LogIn, X } from 'lucide-react';
-import { useRouter } from 'next/router';
+import { X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CopyWithIcon from './CopyWithIcon';
 import BlurText from './BlurText';
+import Image from 'next/image';
 
 const Input = () => {
-  
-  const [Input,setInput]=useState<string>()
-  const [data,setData]=useState({Url_Key:''})
-  const [isPortal,setIsPortal]=useState<boolean>(false)
+  const [input, setInput] = useState('');
+  const [data, setData] = useState({ Url_Key: '' });
+  const [isPortal, setIsPortal] = useState(false);
   const [fullUrl, setFullUrl] = useState('');
-  const [copied, setCopied] = useState(false);
-  const router = useRouter();
-  
-useEffect(() => {
-  console.log(data);
-      if (data && typeof window !== "undefined") {
-      const abs = `${window.location.origin}/${data}`;
-      setFullUrl(abs);
+
+  useEffect(() => {
+    if (data?.Url_Key && typeof window !== 'undefined') {
+      const absoluteUrl = `${window.location.origin}/${data.Url_Key}`;
+      setFullUrl(absoluteUrl);
     }
+  }, [data]);
 
-  }, [data?.Url_Key]);
+  const sendurlHandler = async () => {
+    if (!input || input.trim().length === 0) return alert('Enter The URL');
 
-  const sendurlHandler=async()=>{
-    if(Input!?.length<0) return alert('Enter The Url');
+    const regex = /^(https?:\/\/|ftp:\/\/|www\.|mailto:|tel:)/i;
+    const isLink = regex.test(input.trim());
 
-   const regex=/^(https?:\/\/|ftp:\/\/|www\.|mailto:|tel:)/i 
-   const isLink=regex.test(Input || " ")
-  
-   console.log(isLink,Input);
-   
-   if(!isLink) return alert('Link is Broken');
-    const res=await Sendurl({url:Input!})
-  if(res.success){
-  setIsPortal(true)
-  const key=res.UrlDataInModel?.Url_Key||res.urlKey
-  console.log(key);
-  setData(key)
-  console.log(key);
-  
-  }
-    
-  }
+    if (!isLink) return alert('Link is Broken');
 
-  
+    const res = await Sendurl({ url: input });
+
+    if (res?.success) {
+      setIsPortal(true);
+      setData({ Url_Key:res.UrlDataInModel?.Url_Key || res.urlKey});
+    }
+  };
+
   return (
     <div className='relative'>
-     {!isPortal&& <div className='absolute -top-[130px] w-full sm:w-4/3  '>
-       <div className='w-full'>
-        <BlurText className='text-2xl lg:text-5xl font-extrabold w-full' text='Make Every '/>
-        <h1 className='text-2xl lg:text-5xl font-extrabold w-full' >
-           Character Count.
-        </h1>
-       </div>
-      </div>}
-     {!isPortal&&<StyledWrapper>
-  
-      <div className="input__container">
-        <div className="shadow__input" />
-          <input type="text" name="URLSHORTENER" className="input__search" placeholder="Enter URL" onChange={(e)=>setInput(e.target.value)} />
-        <button className="input__button__shadow" onClick={sendurlHandler}>
-          <img src="/link.png" alt="" className="w-8 text-blue-900 h-5" />
-        </button>
-      
-      </div>
+      {!isPortal && (
+        <div className='absolute -top-[130px] w-full sm:w-4/3'>
+          <div className='w-full'>
+            <BlurText
+              className='text-2xl lg:text-5xl font-extrabold w-full'
+              text='Make Every '
+            />
+            <h1 className='text-2xl lg:text-5xl font-extrabold w-full'>
+              Character Count.
+            </h1>
+          </div>
+        </div>
+      )}
 
+      {!isPortal && (
+        <StyledWrapper>
+          <div className='input__container'>
+            <div className='shadow__input' />
+            <input
+              type='text'
+              name='URLSHORTENER'
+              className='input__search'
+              placeholder='Enter URL'
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button className='input__button__shadow' onClick={sendurlHandler}>
+              <Image
+                src='/link.png'
+                alt='Shorten URL'
+                width={32}
+                height={20}
+                className='w-8 h-5'
+              />
+            </button>
+          </div>
+        </StyledWrapper>
+      )}
 
-    </StyledWrapper>}
-
-    {isPortal&&<>
-    <div className=' w-[90vw] h-[30vh] bg-black/50 flex justify-center items-center'>
-      <div className='w-full h-[80%] flex justify-between items-center flex-col'>
-        <nav className=' bg-amber-500 w-full flex   justify-end px-2'>
-         <button onClick={()=>setIsPortal(false)} className='cursor-pointer hover:text-white text-black'>
-      <X size={29}  />
-    </button>
-        </nav>
-       <div className=' flex flex-row w-full  bg-transparent justify-start px-3 items-center flex-1 lg:justify-center backdrop-blur-2xl'>
-   <span className=' border-1   text-white rounded text-xs sm:text-xs lg:text-3xl  px-2 mr-5'>{`BYTE-URL->`}</span>
-   <a className=' hover:text-amber-600 text-xs hover:translate-4 hover:transform-3d duration-300 transition-all delay-100 lg:text-2xl underline ml-5  mr-5' href={fullUrl}>{`${fullUrl}`}</a>
-   <CopyWithIcon text={fullUrl} />
-       </div>
-      </div>
-    </div>
-
-    </>}
+      {isPortal && (
+        <div className='w-[90vw] h-[30vh] bg-black/50 flex justify-center items-center'>
+          <div className='w-full h-[80%] flex justify-between items-center flex-col'>
+            <nav className='bg-amber-500 w-full flex justify-end px-2'>
+              <button
+                onClick={() => setIsPortal(false)}
+                className='cursor-pointer hover:text-white text-black'
+              >
+                <X size={29} />
+              </button>
+            </nav>
+            <div className='flex flex-row w-full bg-transparent justify-start px-3 items-center flex-1 lg:justify-center backdrop-blur-2xl'>
+              <span className='border-1 text-white rounded text-xs sm:text-xs lg:text-3xl px-2 mr-5'>
+                BYTE-URL-&gt;
+              </span>
+              <a
+                className='hover:text-amber-600 text-xs hover:translate-4 hover:transform-3d duration-300 transition-all delay-100 lg:text-2xl underline ml-5 mr-5'
+                href={fullUrl}
+              >
+                {fullUrl}
+              </a>
+              <CopyWithIcon text={fullUrl} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -116,7 +129,7 @@ const StyledWrapper = styled.div`
   }
 
   .shadow__input {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -172,7 +185,7 @@ const StyledWrapper = styled.div`
     transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     z-index: 3;
-    font-family: "Roboto", Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     letter-spacing: -0.5px;
   }
 
@@ -190,7 +203,7 @@ const StyledWrapper = styled.div`
   }
 
   .input__container::before {
-    content: "URL SHORTENER";
+    content: 'URL SHORTENER';
     position: absolute;
     top: -15px;
     left: 20px;

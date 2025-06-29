@@ -1,15 +1,13 @@
-import Image from "next/image";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import Input from "@/components/Input";
 import BlurText from "@/components/BlurText";
 import CircularText from "@/components/CircularText";
 import GlassIcons from "@/components/GlassIcon";
-import { BarChart2, Book, Github, Globe, Heart, Linkedin } from "lucide-react";
-import { useEffect } from "react";
-import { Geturl } from "./UiControllers/controller";
-import { url } from "inspector";
-import { useParams } from "next/navigation";
-import IsClient from "./isClient";
+import {  Github, Globe, Linkedin } from "lucide-react";
+
+import IsClient from "./IsClient";
+
 
 
 const geistSans = Geist({
@@ -30,7 +28,7 @@ const items = [
   { icon: <Globe size={20} />, color: 'indigo', label: 'Portfolio' ,url:'shahandevfolio.vercel.app/' },
 
 ];
-const key=useParams()
+
 
 
   return (

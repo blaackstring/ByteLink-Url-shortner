@@ -52,6 +52,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 
   useEffect(() => {
     if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -61,6 +62,7 @@ const BlurText: React.FC<BlurTextProps> = ({
       },
       { threshold, rootMargin }
     );
+
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
@@ -95,7 +97,10 @@ const BlurText: React.FC<BlurTextProps> = ({
   );
 
   return (
-    <p ref={ref} className={`blur-text font-extrabold ${className} flex flex-wrap `}>
+    <p
+      ref={ref}
+      className={`blur-text font-extrabold ${className} flex flex-wrap`}
+    >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
@@ -103,8 +108,8 @@ const BlurText: React.FC<BlurTextProps> = ({
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
+          ease: easing,
         };
-        (spanTransition as any).ease = easing;
 
         return (
           <motion.span

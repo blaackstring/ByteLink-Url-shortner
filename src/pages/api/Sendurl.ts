@@ -1,6 +1,6 @@
-import DbConnection from '@/config/Db';
+
 import { UrlModel } from '@/models/url.mode';
-import { log } from 'console';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 

@@ -1,4 +1,4 @@
-import DbConnection from '@/config/Db';
+
 import { UrlModel } from '@/models/url.mode';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

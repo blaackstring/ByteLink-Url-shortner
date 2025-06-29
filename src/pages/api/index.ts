@@ -1,7 +1,6 @@
 import DbConnection from "@/config/Db";
 
 import Geturl from "./redirect";
-import { send } from "vite";
 import sendurl from "./Sendurl";
 import { NextApiRequest, NextApiResponse } from "next";
 

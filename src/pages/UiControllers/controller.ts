@@ -1,4 +1,3 @@
-import { log } from "console";
 
 interface urlProps{
     url:string
@@ -15,7 +14,6 @@ export const Sendurl=async({url}:urlProps)=>{
             body:JSON.stringify({url})
         })
 
-    
         return res.json();
     } catch (error) {
         console.error('Error while sending Url',error)
@@ -23,7 +21,7 @@ export const Sendurl=async({url}:urlProps)=>{
 }
 
 
-export const Geturl=async(url:any)=>{
+export const Geturl=async(url:string)=>{
     try {
 const urlkey=url
         const res=await fetch(`/api/?urlkey=${urlkey}`,{
