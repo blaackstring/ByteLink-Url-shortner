@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { Geturl } from './UiControllers/controller';
+
 import Loader1 from '@/components/Loader1';
+import { Geturl } from '@/UiControllers/controller';
 
 export default function Page() {
   const router = useRouter();
