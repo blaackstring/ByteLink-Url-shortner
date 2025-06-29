@@ -1,5 +1,16 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import Input from "@/components/Input";
+import BlurText from "@/components/BlurText";
+import CircularText from "@/components/CircularText";
+import GlassIcons from "@/components/GlassIcon";
+import { BarChart2, Book, Github, Globe, Heart, Linkedin } from "lucide-react";
+import { useEffect } from "react";
+import { Geturl } from "./UiControllers/controller";
+import { url } from "inspector";
+import { useParams } from "next/navigation";
+import IsClient from "./isClient";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,104 +23,67 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  // update with your own icons and colors
+const items = [
+  { icon: <Linkedin size={20} />, color: 'blue', label: 'LinkedIn',url:'www.linkedin.com/in/mohd-shahan-siddiqui-669a16253' },
+  { icon: <Github size={20} />, color: 'black', label: 'GitHub' , url:'github.com/blaackstring/' },
+  { icon: <Globe size={20} />, color: 'indigo', label: 'Portfolio' ,url:'shahandevfolio.vercel.app/' },
+
+];
+const key=useParams()
+
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
+ 
+         <div
+      className={`${geistSans.className} ${geistMono.className} bg-gradient-to-r overflow-hidden from-indigo-500-400 via-white/20 to-black/40 grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+   <IsClient>
+    <nav className="w-full mt-16 flex jus">
+  <div className="flex flex-col items-center sm:items-center lg:items-start  ">
+    <BlurText
+      text="ByteLink"
+      delay={1550}
+      animateBy="words"
+      direction="top"
+      className="text-5xl  md:text-6xl lg:text-8xl font-bold text-amber-300"
+    />
+    <hr />
+    <BlurText
+      delay={400}
+      text="The URL SHORTNER"
+      animateBy="words"
+      direction="top"
+      className="text-xl sm:text-xl mb-8 ml-3 lg:text-3xl"
+    />
+  </div>
+</nav>
+
+       <Input/>
+   
+
+<div className="w-full py-7 flex justify-end items-center">
+     <div className="w-full flex justify-between items-center flex-row">
+
+  <div style={{ height: '100px', position: 'relative' }}>
+  <GlassIcons items={items} className="custom-class"/>
+</div>
+<CircularText
+  text="REACT*BITS*COMPONENTS*"
+  onHover="speedUp"
+  spinDuration={20}
+
+/>
+
+
+
+
+   </div>
+</div>
+  </IsClient>
     </div>
-  );
+  
+  )
+    
+  
 }
