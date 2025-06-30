@@ -11,7 +11,7 @@ const CopyWithIcon = ({ text }: { text: string }) => {
   };
 
   return (
-    <button onClick={handleCopy} className="p-2 rounded hover:bg-orange-300 hover:text-black">
+    <button onClick={handleCopy} className="p-1 rounded hover:bg-orange-300 hover:text-black">
       {copied ? <Check size={20} color="green" /> : <ClipboardCopy size={20} />}
     </button>
   );

@@ -10,7 +10,7 @@ import { Sendurl } from '@/UiControllers/controller';
 const Input = () => {
   const [input, setInput] = useState('');
   const [data, setData] = useState({ Url_Key: '' });
-  const [isPortal, setIsPortal] = useState(false);
+  const [isPortal, setIsPortal] = useState(true);
   const [fullUrl, setFullUrl] = useState('');
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Input = () => {
   };
 
   return (
-    <div className='relative'>
+    <div className='relative flex justify-start items-center'>
       {!isPortal && (
         <div className='absolute -top-[130px] w-full sm:w-4/3'>
           <div className='w-full'>
@@ -77,7 +77,7 @@ const Input = () => {
       )}
 
       {isPortal && (
-        <div className='w-[90vw] h-[30vh] bg-black/50 flex justify-center items-center'>
+        <div className=' h-[30vh] bg-white/50 flex justify-center items-center'>
           <div className='w-full h-[80%] flex justify-between items-center flex-col'>
             <nav className='bg-amber-500 w-full flex justify-end px-2'>
               <button
@@ -88,11 +88,11 @@ const Input = () => {
               </button>
             </nav>
             <div className='flex flex-row w-full bg-transparent justify-start px-3 items-center flex-1 lg:justify-center backdrop-blur-2xl'>
-              <span className='border-1 text-white rounded text-xs sm:text-xs lg:text-3xl px-2 mr-5'>
+              <span className='border-1 text-white rounded text-xs sm:text-xs lg:text-3xl px-2 mr-3'>
                 BYTE-URL-&gt;
               </span>
               <a
-                className='hover:text-amber-600 text-xs hover:translate-4 hover:transform-3d duration-300 transition-all delay-100 lg:text-2xl underline ml-5 mr-5'
+                className='hover:text-amber-600 text-xs hover:translate-4 hover:transform-3d duration-300 transition-all delay-100 lg:text-2xl underline  mr-5'
                 href={fullUrl}
               >
                 {fullUrl}

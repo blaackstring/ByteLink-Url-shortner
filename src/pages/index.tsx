@@ -34,10 +34,10 @@ const items = [
   return (
  
          <div
-      className={`${geistSans.className} ${geistMono.className} bg-gradient-to-r overflow-hidden from-indigo-500-400 via-white/20 to-black/40 grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
+      className={`${geistSans.className} ${geistMono.className} bg-gradient-to-r overflow-hidden from-indigo-500-400 via-white/20 to-black/40 grid  items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
    <IsClient>
-    <nav className="w-full mt-16 flex jus">
+    <nav className="w-full  flex jus">
   <div className="flex flex-col items-center sm:items-center lg:items-start  ">
     <BlurText
       text="ByteLink"
@@ -52,7 +52,7 @@ const items = [
       text="The URL SHORTENER"
       animateBy="words"
       direction="top"
-      className="text-xl sm:text-xl mb-8 ml-3 lg:text-3xl"
+      className="text-xl sm:text-xl  ml-3 lg:text-3xl"
     />
   </div>
 </nav>
