@@ -7,6 +7,7 @@ import GlassIcons from "@/components/GlassIcon";
 import {  Github, Globe, Linkedin } from "lucide-react";
 
 import IsClient from "./IsClient";
+import { useState } from "react";
 
 
 
@@ -30,11 +31,11 @@ const items = [
 ];
 
 
-
+const [isPortal,setIsPortal]=useState(false)
   return (
  
          <div
-      className={`${geistSans.className} ${geistMono.className} bg-gradient-to-r overflow-hidden from-indigo-500-400 via-white/20 to-black/40 grid  items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
+      className={`${geistSans.className} ${geistMono.className} bg-gradient-to-r overflow-hidden from-indigo-500-400 via-white/20 to-black/40 grid   justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
    <IsClient>
     <nav className="w-full  flex jus">
@@ -52,12 +53,12 @@ const items = [
       text="The URL SHORTENER"
       animateBy="words"
       direction="top"
-      className="text-xl sm:text-xl  ml-3 lg:text-3xl"
+      className="text-xl sm:text-xl mb-20 ml-3 lg:text-3xl"
     />
   </div>
 </nav>
 
-       <Input/>
+       <Input  setIsPortal={setIsPortal} isPortal={isPortal}/>
    
 
 <div className="w-full py-7 flex justify-end items-center">
@@ -72,7 +73,7 @@ const items = [
   text="URL*SHORTENER*BLAACKSTRING*"
   onHover="speedUp"
   spinDuration={20}
-
+   isPortal
 />
 
 

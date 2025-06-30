@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   motion,
   useAnimation,
@@ -11,6 +11,7 @@ interface CircularTextProps {
   onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers";
   className?: string;
   radius?: number;
+  isPortal?:boolean
 }
 
 const CircularText: React.FC<CircularTextProps> = ({
@@ -18,10 +19,35 @@ const CircularText: React.FC<CircularTextProps> = ({
   spinDuration = 20,
   onHover = "speedUp",
   className = "",
-  radius = 50,
+  radius = 44,
+  isPortal=false
 }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
+
+
+   const[ Width,setWidth]=useState({
+   width: typeof window !== "undefined" ? window.innerWidth : 1200,
+   })
+
+
+   useEffect(()=>{
+    const handleWidth=()=>{
+      if(window){
+        setWidth({
+          width:window?.innerWidth
+        })
+      }
+    }
+    
+
+    window.addEventListener('resize',handleWidth)
+
+
+    return ()=>window.removeEventListener('resize',handleWidth)
+   },[])
+
+
 
   useEffect(() => {
     // Start continuous rotation
@@ -130,12 +156,13 @@ const CircularText: React.FC<CircularTextProps> = ({
     });
   };
 
+  const adjustedRadius = Width.width< 400 ? 30 : radius;
   return (
     <motion.div
       className={`relative inline-block ${className}`}
       style={{
-        width: radius * 2,
-        height: radius * 2,
+        width: adjustedRadius*1.4,
+        height: adjustedRadius*1.6,
       }}
       animate={controls}
       onMouseEnter={handleHoverStart}

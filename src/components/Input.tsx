@@ -7,10 +7,16 @@ import BlurText from './BlurText';
 import Image from 'next/image';
 import { Sendurl } from '@/UiControllers/controller';
 
-const Input = () => {
+
+interface InputProps{
+  isPortal:boolean,
+  setIsPortal:(value:boolean)=>void
+}
+
+const Input = ({isPortal,setIsPortal}:InputProps) => {
   const [input, setInput] = useState('');
   const [data, setData] = useState({ Url_Key: '' });
-  const [isPortal, setIsPortal] = useState(false);
+ 
   const [fullUrl, setFullUrl] = useState('');
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const Input = () => {
         <div className='absolute -top-[130px] w-full sm:w-4/3'>
           <div className='w-full'>
             <BlurText
-              className='text-2xl lg:text-5xl font-extrabold w-full'
+              className='text-4xl lg:text-5xl font-extrabold w-full'
               text='Make Every '
             />
             <h1 className='text-2xl lg:text-5xl font-extrabold w-full'>
