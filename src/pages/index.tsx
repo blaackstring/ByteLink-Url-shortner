@@ -73,7 +73,6 @@ const [isPortal,setIsPortal]=useState(false)
   text="URL*SHORTENER*BLAACKSTRING*"
   onHover="speedUp"
   spinDuration={20}
-   isPortal
 />
 
 

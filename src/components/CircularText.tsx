@@ -11,7 +11,6 @@ interface CircularTextProps {
   onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers";
   className?: string;
   radius?: number;
-  isPortal?:boolean
 }
 
 const CircularText: React.FC<CircularTextProps> = ({
@@ -20,7 +19,7 @@ const CircularText: React.FC<CircularTextProps> = ({
   onHover = "speedUp",
   className = "",
   radius = 44,
-  isPortal=false
+
 }) => {
   const letters = Array.from(text);
   const controls = useAnimation();
