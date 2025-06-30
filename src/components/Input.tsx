@@ -10,7 +10,7 @@ import { Sendurl } from '@/UiControllers/controller';
 const Input = () => {
   const [input, setInput] = useState('');
   const [data, setData] = useState({ Url_Key: '' });
-  const [isPortal, setIsPortal] = useState(true);
+  const [isPortal, setIsPortal] = useState(false);
   const [fullUrl, setFullUrl] = useState('');
 
   useEffect(() => {
