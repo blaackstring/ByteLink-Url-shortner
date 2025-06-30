@@ -83,9 +83,9 @@ const Input = ({isPortal,setIsPortal}:InputProps) => {
       )}
 
       {isPortal && (
-        <div className=' h-[30vh] bg-white/50 flex justify-center items-center'>
+        <div className=' h-[30vh] bg-black/50 flex justify-center items-center'>
           <div className='w-full h-[80%] flex justify-between items-center flex-col'>
-            <nav className='bg-amber-500 w-full flex justify-end px-2'>
+            <nav className='bg-amber-300 w-full flex justify-end px-2'>
               <button
                 onClick={() => setIsPortal(false)}
                 className='cursor-pointer hover:text-white text-black'
